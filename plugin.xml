@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="com.distimo.sdk.cordova"
+    version="2.3.0">
+
+    <!-- Plugin name -->
+    <name>Distimo SDK</name>
+    
+    <!-- Plugin description -->
+    <description>
+      &lt;p&gt;This is the official plugin for the DistimoSDK in Apache Cordova/PhoneGap!&lt;/p&gt;
+      
+      &lt;p&gt;The DistimoSDK plugin for Apache Cordova allows you to use Distimo Conversion Tracking
+      in combination with your apps created with Apache PhoneGap/Cordova.&lt;/p&gt;
+    </description>
+    
+    <!-- License -->
+    <license>Apache 2.0</license>
+    
+    <!-- DistimoSDK JS interface -->
+    <asset src="js/distimosdk.js" target="js/distimosdk/distimosdk.js" />
+    
+    <!-- Cordova >= 2.5 -->
+    <engines>
+      <engine name="cordova" version=">=2.5.0" />
+    </engines>
+    
+    <!-- android -->
+    <platform name="android">
+
+        <!-- Plugin specification in config.xml -->
+        <config-file target="res/xml/config.xml" parent="plugins">
+            <plugin name="DistimoSDK" value="com.distimo.sdk.cordova.CDVDistimoSDK"/>
+        </config-file>
+        
+        <!-- DistimoSDK cordova plugin src file -->
+        <source-file src="src/android/CDVDistimoSDK.java" target-dir="src/com/distimo/sdk/cordova" />
+        
+        <!-- DistimoSDK library file -->
+        <source-file src="lib/android/DistimoSDK.jar" target-dir="libs" />
+        
+        <!-- INTERNET permission -->
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+        
+        <!-- INSTALL_REFERRER intent -->
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <receiver android:name="com.distimo.sdk.InstallReferrerReceiver" android:exported="true">
+                <intent-filter>
+                    <action android:name="com.android.vending.INSTALL_REFERRER" />
+                </intent-filter>
+            </receiver>
+        </config-file>
+                  
+    </platform>
+    
+    <!-- ios -->
+    <platform name="ios">
+      
+        <!-- Plugin specification in config.xml -->
+        <config-file target="config.xml" parent="plugins">
+            <plugin name="DistimoSDK" value="CDVDistimoSDK"/>
+        </config-file>
+        
+        <!-- DistimoSDK plugin src file -->
+        <source-file src="src/ios/CDVDistimoSDK.m" />
+
+        <!-- DistimoSDK library -->
+        <header-file src="lib/ios/DistimoSDK.h" />
+        <source-file src="lib/ios/libDistimoSDK.a" framework="true" />
+        
+        <!-- iOS system frameworks -->
+        <framework src="Security.framework" />
+
+    </platform>
+    
+    <!-- Windows Phone 7 -->
+    <platform name="wp8">
+      
+        <!-- Plugin specification in config.xml -->
+        <config-file target="config.xml" parent="plugins">
+            <plugin name="DistimoSDK"/>
+        </config-file>
+        
+        <!-- DistimoSDK plugin src file -->
+        <source-file src="src/wp/DistimoSDK.cs" />
+
+        <!-- DistimoSDK library file -->
+        <source-file src="lib/wp/DistimoSDK.dll" />
+        
+        <!-- Capabilities -->
+        <config-file target="WPAppManifest.xml" parent="/Deployment/App/Capabilities">
+            <Capability Name="ID_CAP_IDENTITY_USER" />
+            <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+            <Capability Name="ID_CAP_NETWORKING" />
+            <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+        </config-file>
+        
+    </platform>
+    
+</plugin>
