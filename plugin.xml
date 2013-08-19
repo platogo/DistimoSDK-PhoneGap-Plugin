@@ -2,17 +2,18 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.distimo.sdk.cordova"
-    version="2.3.0">
+    version="2.4.0">
 
     <!-- Plugin name -->
     <name>Distimo SDK</name>
     
     <!-- Plugin description -->
     <description>
-      &lt;p&gt;This is the official plugin for the DistimoSDK in Apache Cordova/PhoneGap!&lt;/p&gt;
+      &lt;p&gt;This is the official plugin for the Distimo SDK in Apache Cordova/PhoneGap.&lt;/p&gt;
       
       &lt;p&gt;The DistimoSDK plugin for Apache Cordova allows you to use Distimo Conversion Tracking
-      in combination with your apps created with Apache PhoneGap/Cordova.&lt;/p&gt;
+      in combination with your apps created with Apache PhoneGap/Cordova. For more information, visit
+      http://www.distimo.com/conversion-tracking.&lt;/p&gt;
     </description>
     
     <!-- License -->
