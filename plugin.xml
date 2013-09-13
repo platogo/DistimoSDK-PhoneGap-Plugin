@@ -2,7 +2,7 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.distimo.sdk.cordova"
-    version="2.4.0">
+    version="2.5.0">
 
     <!-- Plugin name -->
     <name>Distimo SDK</name>
