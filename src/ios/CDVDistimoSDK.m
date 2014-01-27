@@ -7,7 +7,7 @@
 //
 
 #import <Cordova/CDV.h>
-#import <DistimoSDK/DistimoSDK.h>
+#import "DistimoSDK.h"
 
 @interface CDVDistimoSDK : CDVPlugin
 
@@ -19,11 +19,11 @@
 
 - (void)start:(CDVInvokedUrlCommand *)command {
 	NSString *sdkKey = [command.arguments objectAtIndex:0];
-	
+
 	if (sdkKey) {
 		[DistimoSDK handleLaunchWithOptions:nil
 									 sdkKey:sdkKey];
-		
+
 		[self callback:CDVCommandStatus_OK
 			   message:nil
 			   command:command];
@@ -38,7 +38,7 @@
 
 - (void)version:(CDVInvokedUrlCommand *)command {
 	NSString *version = [DistimoSDK version];
-	
+
 	if (version) {
 		[self callback:CDVCommandStatus_OK
 			   message:version
@@ -54,7 +54,7 @@
 
 - (void)logUserRegistered:(CDVInvokedUrlCommand *)command {
 	[DistimoSDK logUserRegistered];
-	
+
 	[self callback:CDVCommandStatus_OK
 		   message:nil
 		   command:command];
@@ -66,12 +66,12 @@
 		NSLocale *locale = [[[NSLocale alloc] initWithLocaleIdentifier:[command.arguments objectAtIndex:1]] autorelease];
 		double price = [[command.arguments objectAtIndex:2] doubleValue];
 		int quantity = [[command.arguments objectAtIndex:3] intValue];
-		
+
 		[DistimoSDK logInAppPurchaseWithProductID:productID
 									  priceLocale:locale
 											price:price
 										 quantity:quantity];
-		
+
 		[self callback:CDVCommandStatus_OK
 			   message:nil
 			   command:command];
@@ -88,12 +88,12 @@
 		NSString *currency = [command.arguments objectAtIndex:1];
 		double price = [[command.arguments objectAtIndex:2] doubleValue];
 		int quantity = [[command.arguments objectAtIndex:3] intValue];
-		
+
 		[DistimoSDK logInAppPurchaseWithProductID:productID
 									 currencyCode:currency
 											price:price
 										 quantity:quantity];
-		
+
 		[self callback:CDVCommandStatus_OK
 			   message:nil
 			   command:command];
@@ -110,12 +110,12 @@
 		NSLocale *locale = [[[NSLocale alloc] initWithLocaleIdentifier:[command.arguments objectAtIndex:1]] autorelease];
 		double price = [[command.arguments objectAtIndex:2] doubleValue];
 		int quantity = [[command.arguments objectAtIndex:3] intValue];
-		
+
 		[DistimoSDK logExternalPurchaseWithProductID:productID
 										 priceLocale:locale
 											   price:price
 											quantity:quantity];
-		
+
 		[self callback:CDVCommandStatus_OK
 			   message:nil
 			   command:command];
@@ -132,12 +132,12 @@
 		NSString *currency = [command.arguments objectAtIndex:1];
 		double price = [[command.arguments objectAtIndex:2] doubleValue];
 		int quantity = [[command.arguments objectAtIndex:3] intValue];
-		
+
 		[DistimoSDK logExternalPurchaseWithProductID:productID
 										currencyCode:currency
 											   price:price
 											quantity:quantity];
-		
+
 		[self callback:CDVCommandStatus_OK
 			   message:nil
 			   command:command];
@@ -150,9 +150,9 @@
 
 - (void)logBannerClick:(CDVInvokedUrlCommand *)command {
 	NSString *publisher = [command.arguments objectAtIndex:0];
-	
+
 	[DistimoSDK logBannerClickWithPublisher:([publisher isKindOfClass:[NSNull class]] ? nil : publisher)];
-	
+
 	[self callback:CDVCommandStatus_OK
 		   message:nil
 		   command:command];
@@ -162,9 +162,9 @@
 
 - (void)setUserID:(CDVInvokedUrlCommand *)command {
 	NSString *userID = [command.arguments objectAtIndex:0];
-	
+
 	[DistimoSDK setUserID:([userID isKindOfClass:[NSNull class]] ? nil : userID)];
-	
+
 	[self callback:CDVCommandStatus_OK
 		   message:nil
 		   command:command];
@@ -176,7 +176,7 @@
 	if ([command.arguments count] >= 1) {
 		NSString *applinkHandle = [command.arguments objectAtIndex:0];
 		NSString *campaignHandle = [command.arguments objectAtIndex:1];
-		
+
 		[DistimoSDK openAppLink:applinkHandle
 					   campaign:([campaignHandle isKindOfClass:[NSNull class]] ? nil : campaignHandle)
 			   inViewController:nil];
@@ -185,7 +185,7 @@
 			   message:@"Not enough arguments provided"
 			   command:command];
 	}
-	
+
 	[self callback:CDVCommandStatus_OK
 		   message:nil
 		   command:command];
@@ -195,14 +195,14 @@
 
 - (void)callback:(CDVCommandStatus)status message:(NSString *)message command:(CDVInvokedUrlCommand *)command {
 	CDVPluginResult *result;
-	
+
 	if (message) {
 		result = [CDVPluginResult resultWithStatus:status
 								   messageAsString:message];
 	} else {
 		result = [CDVPluginResult resultWithStatus:status];
 	}
-	
+
 	[self.commandDelegate sendPluginResult:result
 								callbackId:command.callbackId];
 }
