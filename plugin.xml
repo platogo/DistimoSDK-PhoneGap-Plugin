@@ -33,8 +33,10 @@
     <platform name="android">
 
         <!-- Plugin specification in config.xml -->
-        <config-file target="res/xml/config.xml" parent="plugins">
-            <plugin name="DistimoSDK" value="com.distimo.sdk.cordova.CDVDistimoSDK"/>
+        <config-file target="config.xml" parent="/*">
+            <feature name="DistimoSDK">
+                <param name="android-package" value="com.distimo.sdk.cordova.CDVDistimoSDK"/>
+            </feature>
         </config-file>
 
         <!-- DistimoSDK cordova plugin src file -->
@@ -66,7 +68,6 @@
         <config-file target="config.xml" parent="/*">
             <feature name="DistimoSDK">
                 <param name="ios-package" value="CDVDistimoSDK"/>
-                <param name="onload" value="true" />
             </feature>
         </config-file>
 
