@@ -2,7 +2,7 @@
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com.distimo.sdk.cordova"
-    version="2.5.0">
+    version="0.0">
 
     <!-- Plugin name -->
     <name>Distimo SDK</name>
@@ -21,12 +21,12 @@
 
     <!-- DistimoSDK JS interface -->
     <js-module src="js/distimosdk.js" name="DistimoSDK">
-        <clobbers target="distimo" />
+        <clobbers target="window.plugins.distimo" />
     </js-module>
 
-    <!-- Cordova >= 2.9 -->
+    <!-- Cordova >= 3.4 -->
     <engines>
-      <engine name="cordova" version=">=2.9.0" />
+      <engine name="cordova" version=">=3.4.0" />
     </engines>
 
     <!-- android -->
@@ -42,8 +42,14 @@
         <!-- DistimoSDK cordova plugin src file -->
         <source-file src="src/android/CDVDistimoSDK.java" target-dir="src/com/distimo/sdk/cordova" />
 
-        <!-- DistimoSDK library file -->
-        <source-file src="lib/android/DistimoSDK.jar" target-dir="libs" />
+        <!-- DistimoSDK open source files -->
+        <source-file src="src/android/EventManager.java" target-dir="src/com/distimo/sdk" />
+        <source-file src="src/android/Utils.java" target-dir="src/com/distimo/sdk" />
+        <source-file src="src/android/OldBase64.java" target-dir="src/com/distimo/sdk" />
+        <source-file src="src/android/DistimoExceptionHandler.java" target-dir="src/com/distimo/sdk" />
+        <source-file src="src/android/InstallReferrerReceiver.java" target-dir="src/com/distimo/sdk" />
+        <source-file src="src/android/AppLinkManager.java" target-dir="src/com/distimo/sdk" />
+        <source-file src="src/android/DistimoSDK.java" target-dir="src/com/distimo/sdk" />
 
         <!-- INTERNET permission -->
         <config-file target="AndroidManifest.xml" parent="/manifest">
@@ -72,38 +78,39 @@
         </config-file>
 
         <!-- DistimoSDK plugin src file -->
-        <source-file src="src/ios/CDVDistimoSDK.m" compiler-flags="-fno-objc-arc"/>
+        <source-file src="src/ios/CDVDistimoSDK.m" compiler-flags="-fno-objc-arc" />
 
-        <!-- DistimoSDK library -->
-        <header-file src="lib/ios/DistimoSDK.h" />
-        <source-file src="lib/ios/libDistimoSDK.a" framework="true" />
+        <!-- DistimoSDK open sources files -->
+        <header-file src="src/ios/DistimoSDK.h" />
+        <header-file src="src/ios/DistimoSDK+Configuration.h" />
+        <header-file src="src/ios/DMSDKApplicationManager.h" />
+        <header-file src="src/ios/DMSDKAppLinkManager.h" />
+        <header-file src="src/ios/DMSDKEvent.h" />
+        <header-file src="src/ios/DMSDKEventLogger.h" />
+        <header-file src="src/ios/DMSDKEventManager.h" />
+        <header-file src="src/ios/DMSDKIDManager.h" />
+        <header-file src="src/ios/DMSDKNSDataTools.h" />
+        <header-file src="src/ios/DMSDKNSStringTools.h" />
+        <header-file src="src/ios/DMSDKPasteboardManager.h" />
+        <header-file src="src/ios/DMSDKSettingsManager.h" />
+        <header-file src="src/ios/DMSDKTools.h" />
+        <header-file src="src/ios/DMSDKUIDeviceTools.h" />
+
+        <source-file src="src/ios/DistimoSDK.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKApplicationManager.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKAppLinkManager.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKEvent.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKEventLogger.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKIDManager.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKNSDataTools.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKNSStringTools.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKPasteboardManager.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKSettingsManager.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKEventManager.m" compiler-flags="-fno-objc-arc" />
+        <source-file src="src/ios/DMSDKUIDeviceTools.m" compiler-flags="-fno-objc-arc" />
 
         <!-- iOS system frameworks -->
         <framework src="Security.framework" />
-
-    </platform>
-
-    <!-- Windows Phone 7 -->
-    <platform name="wp8">
-
-        <!-- Plugin specification in config.xml -->
-        <config-file target="config.xml" parent="plugins">
-            <plugin name="DistimoSDK"/>
-        </config-file>
-
-        <!-- DistimoSDK plugin src file -->
-        <source-file src="src/wp/DistimoSDK.cs" />
-
-        <!-- DistimoSDK library file -->
-        <source-file src="lib/wp/DistimoSDK.dll" />
-
-        <!-- Capabilities -->
-        <config-file target="WPAppManifest.xml" parent="/Deployment/App/Capabilities">
-            <Capability Name="ID_CAP_IDENTITY_USER" />
-            <Capability Name="ID_CAP_IDENTITY_DEVICE" />
-            <Capability Name="ID_CAP_NETWORKING" />
-            <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
-        </config-file>
 
     </platform>
 

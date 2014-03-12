@@ -67,10 +67,10 @@ public class CDVDistimoSDK extends CordovaPlugin {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		return false;
 	}
-
+	
 	private void start(String sdkKey, CallbackContext callbackContext) {
 		if (sdkKey != null && sdkKey.length() > 0) {
 			DistimoSDK.onCreate(cordova.getActivity(), sdkKey);
@@ -79,46 +79,46 @@ public class CDVDistimoSDK extends CordovaPlugin {
 			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "Please provide a valid SDK Key, you can create one at https://analytics.distimo.com/settings/sdk."));
 		}
 	}
-
+	
 	private void version(CallbackContext callbackContext) {
 		String version = DistimoSDK.version();
 		if (version != null && version.length() > 0) {
-			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, version));
+			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
 		} else {
 			callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, "No DistimoSDK version found."));
 		}
 	}
-
+	
 	private void logUserRegistered(CallbackContext callbackContext) {
 		DistimoSDK.onUserRegistered();
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
 	}
-
+	
 	private void logInAppPurchase(String productID, String orderID, CallbackContext callbackContext) {
 		DistimoSDK.onInAppPurchase(productID, orderID);
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
 	}
-
+	
 	private void logInAppPurchaseRefunded(String productID, String orderID, CallbackContext callbackContext) {
 		DistimoSDK.onInAppPurchaseRefunded(productID, orderID);
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
 	}
-
+	
 	private void logExternalPurchaseWithCurrency(String productID, String currency, double price, int quantity, CallbackContext callbackContext) {
 		DistimoSDK.onExternalPurchase(productID, currency, price, quantity);
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
 	}
-
+	
 	private void logBannerClick(String publisher, CallbackContext callbackContext) {
 		DistimoSDK.onBannerClick(publisher);
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
 	}
-
+	
 	private void setUserID(String userID, CallbackContext callbackContext) {
 		DistimoSDK.setUserID(userID);
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK));
 	}
-
+	
 	private void openAppLink(String applinkHandle, String campaignHandle, CallbackContext callbackContext) {
 		DistimoSDK.openAppLink(applinkHandle, campaignHandle, cordova.getActivity());
 	}

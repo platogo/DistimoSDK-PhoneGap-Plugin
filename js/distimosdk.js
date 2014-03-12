@@ -13,7 +13,7 @@ var DistimoSDK = {
 		var failure = function(err) { console.log('Distimo SDK failed to start: ' + err ); };
 		var action = 'start';
 		var args = [sdkKey];
-		exec(success, failure, service, action, args);
+		cordova.exec(success, failure, service, action, args);
 	},
 
 	//Settings
